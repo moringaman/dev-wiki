@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dev Docs</title>
+    <meta name="description" content="Webnostix Dev Wiki">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.fba42894.css" as="style"><link rel="preload" href="/assets/js/app.7b0e0db7.js" as="script"><link rel="preload" href="/assets/js/3.5e0d254a.js" as="script"><link rel="prefetch" href="/assets/js/8.edec09dd.js"><link rel="prefetch" href="/assets/js/1.df57bade.js"><link rel="prefetch" href="/assets/js/2.11bd27e5.js"><link rel="prefetch" href="/assets/js/4.36430e0f.js"><link rel="prefetch" href="/assets/js/5.2ada5031.js"><link rel="prefetch" href="/assets/js/6.c757fc29.js"><link rel="prefetch" href="/assets/js/7.061f02cb.js"><link rel="prefetch" href="/assets/js/9.592aa277.js"><link rel="prefetch" href="/assets/js/10.8baef762.js"><link rel="prefetch" href="/assets/js/11.38a3c60c.js"><link rel="prefetch" href="/assets/js/12.555976f6.js"><link rel="prefetch" href="/assets/js/13.3da75c72.js"><link rel="prefetch" href="/assets/js/14.403700d1.js"><link rel="prefetch" href="/assets/js/15.b3d34ee7.js"><link rel="prefetch" href="/assets/js/16.9eea055d.js"><link rel="prefetch" href="/assets/js/17.06fb27f2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fba42894.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Dev Docs
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/Javascript.html" class="nav-link">Javascript</a></div><div class="nav-item"><a href="/Dev-Ops.html" class="nav-link">Dev-Ops</a></div><div class="nav-item"><a href="/Blockchain.html" class="nav-link">BlockChain</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/Javascript.html" class="nav-link">Javascript</a></div><div class="nav-item"><a href="/Dev-Ops.html" class="nav-link">Dev-Ops</a></div><div class="nav-item"><a href="/Blockchain.html" class="nav-link">BlockChain</a></div><!----></nav><!----></div><div class="page"><div class="content"><p><img src="http://truffleframework.com/docs/img/logo.png" alt="TRUFFLE"></p><h2 id="deploying-your-contract-with-truffle"><a href="#deploying-your-contract-with-truffle" aria-hidden="true" class="header-anchor">#</a> Deploying your contract with truffle</h2><p></p><ol><li>Write a deployment script as follows</li></ol><div class="language-js extra-class"><pre class="language-js"><code>
+<span class="token keyword">var</span> Greetings <span class="token operator">=</span> artifacts<span class="token punctuation">.</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;./Greetings.sol&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>deployer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  deployer<span class="token punctuation">.</span><span class="token function">deploy</span><span class="token punctuation">(</span>Greetings<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><ol start="2"><li><p>Run <code>js truffle develop</code> from your project root to start the truffle server instance</p></li><li><p>Run <code>js truffle develop --log</code> to connect to the server instance</p></li><li><p>At the truffle command prompt run <code>js truffle migrate --compile-all --reset</code> this will compile and deploy a fresh version of our contracts.</p></li><li><p>In order to interact with our deployed contract we need to run <code>Greetings.deployed().then(function(instance){app = instance})</code><br>
+to create an instance of it which we store in the app global variable.</p></li><li><p>Our contract instance <em>app</em> can now be referenced directly and we can call functions using app.getGreeting() for example</p></li></ol><p></p><p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmhtp19Rs0RN5KzpiINCkHJy6sI_zPK_CnDthRxCnnnYW1u4DAew" alt="Ganache"></p><h2 id="migrating-your-contracts-to-the-ganache-network"><a href="#migrating-your-contracts-to-the-ganache-network" aria-hidden="true" class="header-anchor">#</a> Migrating your contracts to the Ganache network</h2><p></p><p>You may whant to migrate your contracts over to the Ganache network in order to interact with them using the ganache Gui.
+This is pretty simple with the truffle framework and involves adding the Ganach network to your truffle config.</p><ol><li><p>Add the following to you truffle js file:</p><div class="language-js extra-class"><pre class="language-js"><code>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  networks<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    ganache<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      host<span class="token punctuation">:</span> <span class="token string">&quot;localhost&quot;</span><span class="token punctuation">,</span>
+      port<span class="token punctuation">:</span> <span class="token number">7545</span><span class="token punctuation">,</span>
+      network_id<span class="token punctuation">:</span> <span class="token string">&quot;*&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div></li><li><p>Next we need to run truffle migrate to compile and deploy our contracts to the newly added Ganache network with the following command</p><p><code>truffle migrate --compile-all --reset --network ganache</code></p></li><li><p>In order to interact with our contracts we first need to run <code>truffle console --network ganache</code> then create an instance of our deployed contract and make it equal to a variable (in this case app).</p><div class="language-js extra-class"><pre class="language-js"><code>
+Greetings<span class="token punctuation">.</span><span class="token function">deployed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>instance<span class="token punctuation">)</span><span class="token punctuation">{</span>app <span class="token operator">=</span> instance<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">)</span> 
+
+</code></pre></div></li><li><p>Now we can call functions on our contracts with commands like:</p><p><code>app.getGreeting()</code></p><p>or to set the greeting</p><p><code>app.setGreeting(&quot;My new greeting&quot;, {from: web3.eth.accounts[0]})</code></p></li></ol></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
+    <script src="/assets/js/3.5e0d254a.js" defer></script><script src="/assets/js/app.7b0e0db7.js" defer></script>
+  </body>
+</html>
