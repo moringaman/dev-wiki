@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Crypto Zombies Game contracts documented | Dev Docs</title>
+    <meta name="description" content="Webnostix Dev Wiki">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.fba42894.css" as="style"><link rel="preload" href="/assets/js/app.cc40a5f5.js" as="script"><link rel="preload" href="/assets/js/13.c8b0f402.js" as="script"><link rel="prefetch" href="/assets/js/9.0ec6c30b.js"><link rel="prefetch" href="/assets/js/1.6e8899c0.js"><link rel="prefetch" href="/assets/js/2.bae8b180.js"><link rel="prefetch" href="/assets/js/3.d2b68578.js"><link rel="prefetch" href="/assets/js/4.44d7cdba.js"><link rel="prefetch" href="/assets/js/5.073a3f86.js"><link rel="prefetch" href="/assets/js/6.d84e31e5.js"><link rel="prefetch" href="/assets/js/7.c074d7aa.js"><link rel="prefetch" href="/assets/js/8.9a61caa9.js"><link rel="prefetch" href="/assets/js/10.ee871895.js"><link rel="prefetch" href="/assets/js/11.52f491ba.js"><link rel="prefetch" href="/assets/js/12.3ee5cad0.js"><link rel="prefetch" href="/assets/js/14.e3744b19.js"><link rel="prefetch" href="/assets/js/15.ebe9d38c.js"><link rel="prefetch" href="/assets/js/16.30646442.js"><link rel="prefetch" href="/assets/js/17.80aba5f3.js"><link rel="prefetch" href="/assets/js/18.7c824585.js"><link rel="prefetch" href="/assets/js/19.25524343.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fba42894.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-active"><!----><span class="site-name">
+      Dev Docs
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/Javascript.html" class="nav-link">Javascript</a></div><div class="nav-item"><a href="/Dev-Ops.html" class="nav-link">Dev-Ops</a></div><div class="nav-item"><a href="/Blockchain.html" class="nav-link">BlockChain</a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/Javascript.html" class="nav-link">Javascript</a></div><div class="nav-item"><a href="/Dev-Ops.html" class="nav-link">Dev-Ops</a></div><div class="nav-item"><a href="/Blockchain.html" class="nav-link">BlockChain</a></div><!----></nav><!----></div><div class="page"><div class="content"><h1 id="crypto-zombies-game-contracts-documented"><a href="#crypto-zombies-game-contracts-documented" aria-hidden="true" class="header-anchor">#</a> Crypto Zombies Game contracts documented</h1><div class="language- extra-class"><pre class="language-text"><code>pragma solidity ^0.4.19;
+
+contract ZombieFactory {
+
+    // declare our event here
+        event NewZombie(uint zombieId, string name, uint dna);
+	
+    uint dnaDigits = 16;
+    uint dnaModulus = 10 ** dnaDigits;
+		
+    struct Zombie {
+        string name;
+        uint dna;
+        }
+					
+    Zombie[] public zombies;
+					    
+    function _createZombie(string _name, uint _dna) private {
+    uint id = zombies.push(Zombie(_name, _dna)) - 1;
+        // and fire it here
+     NewZombie(id,_name, _dna);
+    } 
+									    
+    function _generateRandomDna(string _str) private view returns (uint) {
+        uint rand = uint(keccak256(_str));
+        return rand % dnaModulus;
+    }
+												    
+     function createRandomZombie(string _name) public {
+        uint randDna = _generateRandomDna(_name);
+        _createZombie(_name, randDna);
+    }
+							    
+    }
+</code></pre></div></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
+    <script src="/assets/js/13.c8b0f402.js" defer></script><script src="/assets/js/app.cc40a5f5.js" defer></script>
+  </body>
+</html>
